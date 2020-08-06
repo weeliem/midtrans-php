@@ -60,10 +60,13 @@ class Sanitizer
                 ->maxLength(20)
                 ->apply($field['last_name']);
         }
-        $email = new self;
-        $field['email'] = $email
-            ->maxLength(45)
-            ->apply($field['email']);
+
+        if (isset($field['email'])) {
+            $email = new self;
+            $field['email'] = $email
+                ->maxLength(45)
+                ->apply($field['email']);
+        }
 
         static::fieldPhone($field['phone']);
 
